@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import {CrudService} from '../crud.service'
 
 @Component({
   selector: 'app-form',
@@ -7,11 +8,16 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor() {}
+  constructor(private crud: CrudService) {}
+
+  prediction: Object;
 
   risks_options = [
     { display: 'Diabète', code: 'fr_diabete' },
-    { display: 'Maladie cardiovasculaire', code: 'fr_maladie_cardiovasculaire' },
+    {
+      display: 'Maladie cardiovasculaire',
+      code: 'fr_maladie_cardiovasculaire',
+    },
     { display: 'Asthme', code: 'fr_asthme' },
     { display: 'BPCO', code: 'fr_bpco' },
     { display: 'Néoplasie', code: 'fr_neoplasie' },
@@ -36,6 +42,35 @@ export class FormComponent implements OnInit {
   });
 
   onSubmit() {
-    console.log(this.form.value);
+    this.crud
+      .postRequest([
+        {
+          subject: {
+            reference: '',
+            display: '',
+          },
+          issued: '',
+          component: [
+            {
+              valueQuantity: {
+                value: 0,
+              },
+              code: {
+                coding: [
+                  {
+                    code: 'sexe',
+                    display: 'sexe',
+                    system: 'http://comunicare.io',
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ])
+      .subscribe((data) => {
+        this.prediction = data;
+        console.log(this.prediction);
+      });
   }
 }
