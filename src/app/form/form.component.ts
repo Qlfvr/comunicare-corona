@@ -35,7 +35,7 @@ export class FormComponent implements OnInit {
   ];
 
   ngOnInit() {}
-
+// @TODO : type age and sex value
   form = this.fb.group({
     age: [, [Validators.required, Validators.min(1), Validators.max(120)]],
     sex: [, Validators.required],
@@ -44,35 +44,9 @@ export class FormComponent implements OnInit {
   });
 
   onSubmit() {
-    this.crud
-      .postRequest([
-        {
-          subject: {
-            reference: '',
-            display: '',
-          },
-          issued: '',
-          component: [
-            {
-              valueQuantity: {
-                value: 0,
-              },
-              code: {
-                coding: [
-                  {
-                    code: 'sexe',
-                    display: 'sexe',
-                    system: 'http://comunicare.io',
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      ])
-      .subscribe((data) => {
-        this.prediction = data;
-        console.log(this.prediction);
-      });
+    this.crud.postRequest(this.form.value).subscribe((response) => {
+      this.prediction = response;
+      console.log(this.prediction);
+    });
   }
 }
