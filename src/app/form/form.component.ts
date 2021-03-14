@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import {CrudService} from '../crud.service'
+import { CrudService } from '../crud.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -36,8 +37,8 @@ export class FormComponent implements OnInit {
   ngOnInit() {}
 
   form = this.fb.group({
-    age: [],
-    sex: [-1],
+    age: [, [Validators.required, Validators.min(1), Validators.max(120)]],
+    sex: [, Validators.required],
     risks: [[]],
     symptoms: [[]],
   });
