@@ -1,40 +1,76 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    
-    <ion-item>
-      <ion-label floating color="primary">Âge</ion-label>
-      <ion-input type="number"  formControlName="age" min="0"  max="120" placeholder="Entrez votre âge"></ion-input>
-    </ion-item>
+  <ion-item [ngClass]="{'has-errors' : (form.controls['age'].touched || form.controls['age'].dirty) && form.controls['age'].invalid}">
+    <ion-label floating color="primary">Âge</ion-label>
+    <ion-input
+      type="number"
+      formControlName="age"
+      min="0"
+      max="120"
+      placeholder="Entrez votre âge"
+    ></ion-input>
+  </ion-item>
 
-    <ion-item>
-        <ion-label floating color="primary">Sexe</ion-label>
-        <ion-select multiple="false" formControlName="sex" cancelText="Annuler" okText="Valider" placeholder="Indiquez votre sexe">
-          <ion-select-option value="0">Femme</ion-select-option>
-          <ion-select-option value="1">Homme</ion-select-option>
-        </ion-select>
-    </ion-item>
+  <ng-container
+    *ngIf="form.controls['age'].invalid  && (form.controls['age'].dirty || form.controls['age'].touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="form.controls['age'].errors.required ; then thenblock else elseblock"></div>
+    <ng-template #thenblock><span class="error-field">Veuillez renseigner ce champ.</span></ng-template>
+    <ng-template #elseblock><span class="error-field">L'âge doit être compris entre 1 et 120.</span></ng-template>
+</ng-container>
+
+  <ion-item [ngClass]="{'has-errors' : (form.controls['sex'].touched || form.controls['sex'].dirty) && form.controls['sex'].invalid}">
+    <ion-label floating color="primary">Sexe</ion-label>
+    <ion-select
+      multiple="false"
+      formControlName="sex"
+      cancelText="Annuler"
+      okText="Valider"
+      placeholder="Indiquez votre sexe"
+    >
+      <ion-select-option value="0">Femme</ion-select-option>
+      <ion-select-option value="1">Homme</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+      <span *ngIf="form.controls['sex'].errors?.required  && (form.controls['sex'].dirty || form.controls['sex'].touched)" class="error-field">Veuillez renseigner ce champ.</span>
+
 
   <ion-item>
     <ion-label floating color="primary">Risques</ion-label>
-    <ion-select multiple="true" formControlName="risks" cancelText="Annuler" okText="Valider" placeholder="Indiquez vos facteurs de risque">
-      <ion-select-option *ngFor="let element of risks_options" [value]="element.code">{{element.display}}</ion-select-option>
+    <ion-select
+      multiple="true"
+      formControlName="risks"
+      cancelText="Annuler"
+      okText="Valider"
+      placeholder="Indiquez vos facteurs de risque"
+    >
+      <ion-select-option
+        *ngFor="let element of risks_options"
+        [value]="element.code"
+        >{{ element.display }}</ion-select-option
+      >
       <ion-select-option value="olives">Black Olives</ion-select-option>
-  
     </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label floating color="primary">Symptômes</ion-label>
-    <ion-select multiple="true" formControlName="symptoms" cancelText="Annuler" okText="Valider"  placeholder="Indiquez vos symptômes">
-        <ion-select-option *ngFor="let element of symp_options" [value]="element.code">{{element.display}}</ion-select-option>
-
-  
+    <ion-select
+      multiple="true"
+      formControlName="symptoms"
+      cancelText="Annuler"
+      okText="Valider"
+      placeholder="Indiquez vos symptômes"
+    >
+      <ion-select-option
+        *ngFor="let element of symp_options"
+        [value]="element.code"
+        >{{ element.display }}</ion-select-option
+      >
     </ion-select>
   </ion-item>
 
-  
-
-  <ion-button type="submit" color="primary" >Envoyer</ion-button>
+  <ion-button type="submit" color="primary"  [disabled]="!form.valid">Envoyer</ion-button>
 </form>
-<p>Value: {{ form.value | json}}</p>
 
-<p>{{currentCustomer}}</p>
