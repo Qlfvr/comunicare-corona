@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import {CrudService} from '../crud.service'
 
 @Component({
@@ -8,7 +8,7 @@ import {CrudService} from '../crud.service'
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor(private crud: CrudService) {}
+  constructor(private crud: CrudService, private fb: FormBuilder) {}
 
   prediction: Object;
 
@@ -34,11 +34,12 @@ export class FormComponent implements OnInit {
   ];
 
   ngOnInit() {}
-  form = new FormGroup({
-    age: new FormControl(''),
-    sex: new FormControl(-1),
-    risks: new FormControl([]),
-    symptoms: new FormControl([]),
+
+  form = this.fb.group({
+    age: [],
+    sex: [-1],
+    risks: [[]],
+    symptoms: [[]],
   });
 
   onSubmit() {
