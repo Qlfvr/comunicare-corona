@@ -1,0 +1,14 @@
+.error-field {
+    position: absolute;
+    right: 20px;
+    /* top: 56px; */
+    color: #b50400 !important;
+    font-size: 0.8rem;
+    z-index: 2;
+    margin-top: -12px;
+}
+
+ion-item.has-errors {
+  margin-bottom: 20px !important;
+}
+
