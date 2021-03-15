@@ -5,7 +5,8 @@ ion-item.error-field {
   }
 }
 
-ion-item.has-errors {
-  margin-bottom: 20px !important;
+ion-button {
+  margin: auto;
+  &[disabled] {
+  }
 }
-
