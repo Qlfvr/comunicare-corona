@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CrudService } from '../crud.service';
 import { Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +8,9 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor(private crud: CrudService, private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
+
+  @Output() formSentEvent = new EventEmitter();
 
   prediction: Object;
 
@@ -35,7 +36,7 @@ export class FormComponent implements OnInit {
   ];
 
   ngOnInit() {}
-// @TODO : type age and sex value
+  // @TODO : type age and sex value
   form = this.fb.group({
     age: [, [Validators.required, Validators.min(1), Validators.max(120)]],
     sex: [, Validators.required],
@@ -44,9 +45,6 @@ export class FormComponent implements OnInit {
   });
 
   onSubmit() {
-    this.crud.postRequest(this.form.value).subscribe((response) => {
-      this.prediction = response;
-      console.log(this.prediction);
-    });
+    this.formSentEvent.emit(this.form.value);
   }
 }

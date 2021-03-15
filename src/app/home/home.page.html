@@ -14,8 +14,8 @@
   </ion-header>
 
   <div id="container">
-    <app-form></app-form>
-    <app-prediction></app-prediction>
+    <app-form  (formSentEvent)="sendPostRequest($event )"></app-form>
+    <app-prediction *ngIf="prediction"></app-prediction>
   </div>
 </ion-content>
 <ion-footer>
