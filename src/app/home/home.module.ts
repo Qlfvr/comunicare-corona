@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import {FormComponent} from '../form/form.component'
+import {PredictionComponent} from '../prediction/prediction.component'
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import {FormComponent} from '../form/form.component'
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, FormComponent]
+  declarations: [HomePage, FormComponent, PredictionComponent]
 })
 export class HomePageModule {}
