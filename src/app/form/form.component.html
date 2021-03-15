@@ -10,14 +10,12 @@
     ></ion-input>
   </ion-item>
 
-  <ng-container
-    *ngIf="form.controls['age'].invalid  && (form.controls['age'].dirty || form.controls['age'].touched)"
-    class="alert alert-danger"
-  >
-    <div *ngIf="form.controls['age'].errors.required ; then thenblock else elseblock"></div>
-    <ng-template #thenblock><span class="error-field">Veuillez renseigner ce champ.</span></ng-template>
-    <ng-template #elseblock><span class="error-field">L'âge doit être compris entre 1 et 120.</span></ng-template>
-</ng-container>
+        <!-- ERROR  -->
+      <ion-item class="error-field" lines="none"  *ngIf="form.controls['age'].invalid  && (form.controls['age'].dirty || form.controls['age'].touched)">
+          <ng-container *ngIf="form.controls['age'].errors.required ; then thenblock else elseblock"></ng-container>
+          <ng-template #thenblock><ion-note slot="end" color="danger" >Veuillez renseigner ce champ.</ion-note></ng-template>
+          <ng-template #elseblock><ion-note slot="end" color="danger" >L'âge doit être compris entre 1 et 120.</ion-note></ng-template>
+    </ion-item>
 
   <ion-item [ngClass]="{'has-errors' : (form.controls['sex'].touched || form.controls['sex'].dirty) && form.controls['sex'].invalid}">
     <ion-label floating color="primary">Sexe</ion-label>
@@ -33,8 +31,9 @@
     </ion-select>
   </ion-item>
 
-      <span *ngIf="form.controls['sex'].errors?.required  && (form.controls['sex'].dirty || form.controls['sex'].touched)" class="error-field">Veuillez renseigner ce champ.</span>
-
+        <ion-item class="error-field" lines="none"  *ngIf="form.controls['sex'].errors?.required  && (form.controls['sex'].dirty || form.controls['sex'].touched)">
+            <ion-note slot="end" color="danger" >Veuillez renseigner ce champ.</ion-note>
+        </ion-item>
 
   <ion-item>
     <ion-label floating color="primary">Risques</ion-label>
