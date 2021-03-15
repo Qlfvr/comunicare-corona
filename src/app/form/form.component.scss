@@ -1,11 +1,8 @@
-.error-field {
-    position: absolute;
-    right: 20px;
-    /* top: 56px; */
-    color: #b50400 !important;
-    font-size: 0.8rem;
-    z-index: 2;
-    margin-top: -12px;
+ion-item.error-field {
+  --min-height: 8px;
+  ion-note {
+    padding: 0.5rem 0 0 0;
+  }
 }
 
 ion-item.has-errors {
