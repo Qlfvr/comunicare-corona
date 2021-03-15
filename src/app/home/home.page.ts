@@ -7,14 +7,21 @@ import { CrudService } from '../crud.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private crud: CrudService,) {}
+  constructor(private crud: CrudService) {}
 
   prediction: any;
+  isLoading: boolean = false;
 
   sendPostRequest(formData: any) {
+    this.isLoading = true;
+
     this.crud.postRequest(formData).subscribe((response) => {
       this.prediction = response;
       console.log(this.prediction);
+      this.isLoading = false;
     });
+
+  
+
   }
 }

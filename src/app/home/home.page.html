@@ -14,8 +14,11 @@
   </ion-header>
 
   <div id="container">
-    <app-form  (formSentEvent)="sendPostRequest($event )"></app-form>
-    <app-prediction *ngIf="prediction"></app-prediction>
+
+    {{isLoading}}
+
+    <app-form *ngIf="!prediction && !loading" (formSentEvent)="sendPostRequest($event )"></app-form>
+    <app-prediction *ngIf="prediction && !loading"></app-prediction>
   </div>
 </ion-content>
 <ion-footer>
