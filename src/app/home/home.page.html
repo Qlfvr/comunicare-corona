@@ -13,10 +13,12 @@
     </ion-toolbar>
   </ion-header>
 
-    <app-ecg *ngIf="isLoading"></app-ecg>
-    <app-form *ngIf="!prediction && !isLoading" (formSentEvent)="sendPostRequest($event )"></app-form>
+  <div id="container">
+    <app-ecg></app-ecg>
+    <!-- <app-form *ngIf="!prediction && !isLoading" (formSentEvent)="sendPostRequest($event )"></app-form>
     <app-prediction *ngIf="prediction && !loading" [response]="prediction"></app-prediction>
-  
+   -->
+</div>
 </ion-content>
 <ion-footer>
     <ion-toolbar class="ion-text-center" color="dark">
