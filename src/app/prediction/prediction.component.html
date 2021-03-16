@@ -1,20 +1,74 @@
-  <ion-card *ngIf="proba">
-    <ion-card-header>
-      <ion-card-subtitle></ion-card-subtitle>
-      <ion-card-title
-        ><strong
-          >Nos modèles prédisent à {{proba}}% que le patient
+<ion-card *ngIf="getSummary()">
+  <ion-card-header>
+    <ion-card-subtitle></ion-card-subtitle>
+    <ion-card-title
+      ><strong
+        >Nos modèles prédisent à {{ getSummary()[1] }}% que le patient
 
-          <ng-container
-            *ngIf="outcome=='hospitalise'; then hospital; else ambulatoire"
-          ></ng-container>
-          <ng-template #hospital>devrait {{outcome}}</ng-template>
-          <ng-template #ambulatoire>ne devrait pas</ng-template>
-          être hospitalisé.</strong
-        ></ion-card-title
-      >
-    </ion-card-header>
-  </ion-card>
+        <ng-container
+          *ngIf="
+            getSummary()[0] == 'hospitalise';
+            then hospital;
+            else ambulatoire
+          "
+        ></ng-container>
+        <ng-template #hospital>devrait {{ getSummary()[1] }}</ng-template>
+        <ng-template #ambulatoire>ne devrait pas</ng-template>
+        être hospitalisé.
+      </strong></ion-card-title
+    >
+  </ion-card-header>
+  <ion-card-content><a href="https://www.comunicare.be/">Vous êtes médecin et vous n'êtes pas d’accord ? Signalez le nous!</a></ion-card-content>
+</ion-card>
 
-  <!-- {{ data | json }} -->
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label><strong>Arbre à gradient renforcé</strong> </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ambulatoire</ion-label>
+        {{ getProba("GBT", "ambulatoire") }}%
+      </ion-item>
+      <ion-item>
+        <ion-label>Hospitalisé</ion-label>
+        {{ getProba("GBT", "hospitalise") }}%
+      </ion-item>
+    </ion-col>
+  </ion-row>
 
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label><strong>Forêts aléatoires</strong> </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ambulatoire</ion-label>
+        {{ getProba("RF", "ambulatoire") }}%
+      </ion-item>
+      <ion-item>
+        <ion-label>Hospitalisé</ion-label>
+        {{ getProba("RF", "hospitalise") }}%
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label><strong>Réseau neuronal</strong> </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ambulatoire</ion-label>
+        {{ getProba("NN", "ambulatoire") }}%
+      </ion-item>
+      <ion-item>
+        <ion-label>Hospitalisé</ion-label>
+        {{ getProba("NN", "hospitalise") }}%
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- {{ data | json }} -->
