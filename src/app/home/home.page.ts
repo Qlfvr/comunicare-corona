@@ -21,4 +21,13 @@ export class HomePage {
       this.isLoading = false;
     });
   }
+
+  reset() {
+
+    console.log("reset");
+    
+    this.prediction = null;
+    console.log(this.prediction);
+    
+  }
 }

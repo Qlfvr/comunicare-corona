@@ -18,7 +18,11 @@
       </strong></ion-card-title
     >
   </ion-card-header>
-  <ion-card-content><a href="https://www.comunicare.be/">Vous êtes médecin et vous n'êtes pas d’accord ? Signalez le nous!</a></ion-card-content>
+  <ion-card-content
+    ><a href="https://www.comunicare.be/"
+      >Vous êtes médecin et vous n'êtes pas d’accord ? Signalez le nous!</a
+    ></ion-card-content
+  >
 </ion-card>
 
 <ion-grid>
@@ -67,6 +71,8 @@
         <ion-label>Hospitalisé</ion-label>
         {{ getProba("NN", "hospitalise") }}%
       </ion-item>
+
+       <ion-button (click)="btnClicked()" expand="full">Retourner au formulaire</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -11,6 +11,16 @@ export class PredictionComponent implements OnInit {
 
   @Input() response: any;
   predictions: Array<any>;
+
+  @Output() resetEvent = new EventEmitter();
+
+
+  btnClicked(){
+      console.log("button clicked");
+      this.resetEvent.emit();
+
+      
+  }
 
   // Disclaimer Alert
 
@@ -45,6 +55,6 @@ export class PredictionComponent implements OnInit {
 
   ngOnInit() {
     this.predictions = this.response.data[0].prediction;
-    this.presentAlert()
+    this.presentAlert();
   }
 }

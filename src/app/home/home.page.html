@@ -23,6 +23,7 @@
   <app-prediction
     *ngIf="prediction && !isLoading"
     [response]="prediction"
+    (resetEvent)="reset()"
   ></app-prediction>
 </ion-content>
 <ion-footer>
