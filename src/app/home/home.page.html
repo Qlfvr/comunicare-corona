@@ -13,15 +13,23 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <app-ecg  *ngIf="isLoading"></app-ecg>
-    <app-form *ngIf="!prediction && !isLoading" (formSentEvent)="sendPostRequest($event )"></app-form>
-    <app-prediction *ngIf="prediction && !loading" [response]="prediction"></app-prediction>
-  
-</div>
+  <div class="centered-container" *ngIf="isLoading">
+    <app-ecg></app-ecg>
+  </div>
+  <app-form
+    *ngIf="!prediction && !isLoading"
+    (formSentEvent)="sendPostRequest($event )"
+  ></app-form>
+  <app-prediction
+    *ngIf="prediction && !loading"
+    [response]="prediction"
+  ></app-prediction>
 </ion-content>
 <ion-footer>
-    <ion-toolbar class="ion-text-center" color="dark">
-        <ion-title size="small">© Copyright 2020 <a href="https://www.comunicare.be/">Comunicare</a></ion-title>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar class="ion-text-center" color="dark">
+    <ion-title size="small"
+      >© Copyright 2020
+      <a href="https://www.comunicare.be/">Comunicare</a></ion-title
+    >
+  </ion-toolbar>
+</ion-footer>
