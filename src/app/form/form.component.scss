@@ -7,8 +7,7 @@ ion-item.error-field {
 
 ion-button {
   margin: auto;
-  &[disabled] {
+  &[disabled], &.disabled {
     --background: var(--ion-color-medium);
-    opacity: 20%;
   }
 }

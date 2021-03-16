@@ -86,6 +86,7 @@
         <ion-item class="error-field" lines="none"  *ngIf="form.controls['symptoms'].errors?.required  && (form.controls['symptoms'].dirty || form.controls['symptoms'].touched)">
             <ion-note slot="end" color="danger" >Veuillez sélectionner au moins un symptôme.</ion-note>
         </ion-item>
+        
         <ion-button expand="full" size="large" type="submit"   [disabled]="!form.valid">Envoyer</ion-button>
 
       </form>
