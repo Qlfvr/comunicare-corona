@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prediction.component.scss'],
 })
 export class PredictionComponent implements OnInit {
+  constructor() {}
+
+  @Input() response: any;
 
   constructor() { }
 
