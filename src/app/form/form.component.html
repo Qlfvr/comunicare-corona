@@ -2,8 +2,9 @@
 
     <ion-card-header>
         <ion-card-title>
-            Formulaire
+            Prédiction du risque d’hospitalisation des patients positifs COVID-19
         </ion-card-title>
+        <ion-card-subtitle>Veuillez compléter ce formulaire pour obtenir nos prédictions.</ion-card-subtitle>
     </ion-card-header>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -58,7 +59,6 @@
               [value]="element.code"
               >{{ element.display }}</ion-select-option
             >
-            <ion-select-option value="olives">Black Olives</ion-select-option>
           </ion-select>
         </ion-item>
       
