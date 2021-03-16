@@ -40,8 +40,8 @@ export class FormComponent implements OnInit {
   form = this.fb.group({
     age: [, [Validators.required, Validators.min(1), Validators.max(120)]],
     sex: [, Validators.required],
-    risks: [[]],
-    symptoms: [[]],
+    risks: [[],Validators.required],
+    symptoms: [[],Validators.required],
   });
 
   onSubmit() {

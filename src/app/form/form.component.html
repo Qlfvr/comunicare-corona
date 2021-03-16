@@ -15,7 +15,7 @@
             formControlName="age"
             min="0"
             max="120"
-            placeholder="Entrez votre âge"
+            placeholder="Entrer l'âge"
             style="text-align: right;"
           ></ion-input>
         </ion-item>
@@ -61,6 +61,10 @@
             >
           </ion-select>
         </ion-item>
+
+        <ion-item class="error-field" lines="none"  *ngIf="form.controls['risks'].errors?.required  && (form.controls['risks'].dirty || form.controls['risks'].touched)">
+            <ion-note slot="end" color="danger" >Veuillez sélectionner au moins un risque.</ion-note>
+        </ion-item>
       
         <ion-item>
           <ion-label floating color="primary">Symptômes</ion-label>
@@ -77,6 +81,10 @@
               >{{ element.display }}</ion-select-option
             >
           </ion-select>
+        </ion-item>
+
+        <ion-item class="error-field" lines="none"  *ngIf="form.controls['symptoms'].errors?.required  && (form.controls['symptoms'].dirty || form.controls['symptoms'].touched)">
+            <ion-note slot="end" color="danger" >Veuillez sélectionner au moins un symptôme.</ion-note>
         </ion-item>
         <ion-button expand="full" size="large" type="submit"   [disabled]="!form.valid">Envoyer</ion-button>
 
