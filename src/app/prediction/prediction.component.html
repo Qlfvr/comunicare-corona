@@ -1,4 +1,3 @@
-<ion-content>
   <ion-card *ngIf="proba">
     <ion-card-header>
       <ion-card-subtitle></ion-card-subtitle>
@@ -7,9 +6,9 @@
           >Nos modèles prédisent à {{proba}}% que le patient
 
           <ng-container
-            *ngIf="outcome==='hospitalise'; then hospital; else ambulatoire"
+            *ngIf="outcome=='hospitalise'; then hospital; else ambulatoire"
           ></ng-container>
-          <ng-template #hospital>devrait</ng-template>
+          <ng-template #hospital>devrait {{outcome}}</ng-template>
           <ng-template #ambulatoire>ne devrait pas</ng-template>
           être hospitalisé.</strong
         ></ion-card-title
@@ -18,4 +17,4 @@
   </ion-card>
 
   <!-- {{ data | json }} -->
-</ion-content>
+
