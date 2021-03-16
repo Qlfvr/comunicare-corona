@@ -9,7 +9,7 @@ import { CrudService } from '../crud.service';
 export class HomePage {
   constructor(private crud: CrudService) {}
 
-  prediction: any;
+  prediction: object;
   isLoading: boolean = false;
 
   sendPostRequest(formData: any) {
@@ -20,8 +20,5 @@ export class HomePage {
       console.log(this.prediction);
       this.isLoading = false;
     });
-
-  
-
   }
 }
