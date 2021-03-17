@@ -16,7 +16,6 @@
   <app-ecg class="centered-container" *ngIf="isLoading"></app-ecg>
 
   <app-form
-    class="centered-container"
     *ngIf="!prediction && !isLoading"
     (formSentEvent)="sendPostRequest($event )"
   ></app-form>
